@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+<EditText
+        android:id="@+id/ref"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:ems="14"
+        android:inputType="textPersonName"
+        android:hint="Enter reference.."/>
+<Button
+        android:id="@+id/searchBtn"
+        android:layout_marginTop="-45dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="320dp"
+        android:text="🔍︎"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorWhite"
+        android:textSize="27dp"/>
+
+<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scroll"
+        android:layout_marginLeft ="15dp"
+        android:layout_marginTop="70dp">
+
+    <WebView
+            android:id="@+id/webview"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            android:orientation="vertical"/>
+</ScrollView>
+
+</LinearLayout>
