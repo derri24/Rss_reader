@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Webkit;
 using Android.Widget;
-using Rss_reader.rss_client.Models;
+
 
 namespace Rss_reader
 {
@@ -21,14 +22,14 @@ namespace Rss_reader
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
-            var searchBtn = (Button) FindViewById(Resource.Id.searchBtn);
+            var searchBtn = (Button) FindViewById(Resource.Id.urlBtn);
             if (searchBtn != null)
                 searchBtn.Click += delegate { SearchBtn_Click(); };
         }
 
         private async Task SearchBtn_Click()
         {
-            var source = ((EditText) FindViewById(Resource.Id.@ref))?.Text;
+            var source = ((EditText) FindViewById(Resource.Id.url))?.Text;
             HttpClient client = new HttpClient();
             var response = client.GetAsync("https://www.onliner.by/feed").Result;
             if (response.StatusCode == HttpStatusCode.OK)
@@ -42,14 +43,10 @@ namespace Rss_reader
 
 
                 WebView webView = (WebView) FindViewById(Resource.Id.webview);
-// static html string data
-                string customHtml = "<html><body><h1>Hello, AbhiAndroid</h1>" +
-                                    "<h1>Heading 1</h1><h2>Heading 2</h2><h3>Heading 3</h3>" +
-                                    "<p>This is a sample paragraph of static HTML In Web view</p>" +
-                                    "</body></html>";
-// load static html data on a web view
+         
+                var content=HtmlCreator.GetContent(rssModel);
                 if (webView != null)
-                    webView.LoadData(customHtml, "text/html", "UTF-8");
+                    webView.LoadData(content, "text/html", "UTF-8");
             }
         }
     }

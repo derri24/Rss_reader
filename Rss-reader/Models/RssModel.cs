@@ -1,10 +1,9 @@
-﻿namespace Rss_reader
-{
-   using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace rss_client.Models
+namespace Rss_reader
 {
+  
     [XmlRoot(ElementName = "image")]
     public class Image
     {
@@ -100,5 +99,4 @@ namespace rss_client.Models
         [XmlAttribute(AttributeName = "version")]
         public string Version { get; set; }
     }
-}
 }
