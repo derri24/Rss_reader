@@ -58,6 +58,7 @@ namespace Rss_reader
             }
             catch (Exception ex)
             {
+                // ignored
             }
         }
 
@@ -65,7 +66,7 @@ namespace Rss_reader
         {
             var source = ((EditText) FindViewById(Resource.Id.url))?.Text;
             HttpClient client = new HttpClient();
-            var response = client.GetAsync("https://www.onliner.by/feed").Result;
+            var response = client.GetAsync(source).Result;
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 HttpContent responseContent = response.Content;
