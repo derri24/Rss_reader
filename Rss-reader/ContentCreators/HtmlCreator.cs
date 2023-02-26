@@ -15,6 +15,7 @@ namespace Rss_reader
                          
                           $"<p>{item.Description}</p>"+
                           "</br>";
+                content = content.Replace('#', '\0');
             }
             return
                 $"<html><body> {content} </body></html>";

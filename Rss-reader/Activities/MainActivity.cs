@@ -28,6 +28,7 @@ namespace Rss_reader
             SetContentView(Resource.Layout.activity_main);
             Platform.Init(this, savedInstanceState);
             _webView = (WebView) FindViewById(Resource.Id.webview);
+            
             _scroll = (ScrollView) FindViewById(Resource.Id.scroll);
 
             var urlBtn = (Button) FindViewById(Resource.Id.urlBtn);
@@ -39,15 +40,18 @@ namespace Rss_reader
                 fileBtn.Click += delegate { FileBtn_Click(); };
         }
 
-
         private void LoadDataToWebView(string xml)
         {
             var rssModel = XMLSerializer.Deserialize(xml);
             var content = HtmlCreator.GetContent(rssModel);
-            _scroll.Visibility = ViewStates.Visible;
-            _webView.Visibility = ViewStates.Visible;
+            if (_scroll != null)
+                _scroll.Visibility = ViewStates.Visible;
+
             if (_webView != null)
+            {
+                _webView.Visibility = ViewStates.Visible;
                 _webView.LoadData(content, "text/html", "UTF-8");
+            }
         }
 
         private async Task FileBtn_Click()
@@ -63,8 +67,11 @@ namespace Rss_reader
             catch (Exception ex)
             {
                 Toast.MakeText(Application.Context, "Incorrect file", ToastLength.Short)!.Show();
-                _webView.Visibility = ViewStates.Invisible;
-                _scroll.Visibility = ViewStates.Invisible;
+                
+                if (_scroll != null)
+                    _scroll.Visibility = ViewStates.Invisible;
+                if (_webView != null)
+                    _webView.Visibility = ViewStates.Invisible;
             }
         }
 
@@ -85,9 +92,11 @@ namespace Rss_reader
             catch (Exception ex)
             {
                 Toast.MakeText(Application.Context, "Incorrect URL", ToastLength.Short)!.Show();
-
-                _webView.Visibility = ViewStates.Invisible;
-                _scroll.Visibility = ViewStates.Invisible;
+                
+                if (_scroll != null)
+                    _scroll.Visibility = ViewStates.Invisible;
+                if (_webView != null)
+                    _webView.Visibility = ViewStates.Invisible;
             }
         }
     }
