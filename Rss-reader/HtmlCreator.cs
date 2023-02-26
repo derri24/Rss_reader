@@ -2,7 +2,7 @@
 
 namespace Rss_reader
 {
-    public class HtmlCreator
+    public static class HtmlCreator
     {
         public static string GetContent(RssModel rssModel)
         {
@@ -15,7 +15,6 @@ namespace Rss_reader
                          
                           $"<p>{item.Description}</p>"+
                           "</br>";
-
             }
             return
                 $"<html><body> {content} </body></html>";
