@@ -56,7 +56,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Activities\MainActivity.cs" />
-        <Compile Include="HtmlCreator.cs" />
+        <Compile Include="ContentCreators\HtmlCreator.cs" />
         <Compile Include="Models\RssModel.cs" />
         <Compile Include="Resources\Resource.Designer.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

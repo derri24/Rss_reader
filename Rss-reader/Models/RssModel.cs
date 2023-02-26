@@ -3,7 +3,6 @@ using System.Xml.Serialization;
 
 namespace Rss_reader
 {
-  
     [XmlRoot(ElementName = "image")]
     public class Image
     {
